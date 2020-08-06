@@ -1,0 +1,55 @@
+{% if categories %}
+{# <div class="container"> #}
+  <nav id="menu" class="navbar">
+    <div class="navbar-header"><span id="category" class="visible-xs">{{ text_category }}</span>
+      <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse text-center">
+      <ul class="nav navbar-nav ist-unstyled menu flex-multi">
+        <li><a href="{{ home }}">{{ text_home }}</a></li>
+        {% for category in categories %}
+        {% if category.children %}
+        <li class="parent dropdown"><a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}<span class="arrow"><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
+          <div class="dropdown-menu">
+            <div class="dropdown-inner"> {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+              <ul class="list-unstyled second-level-menu">
+                {% for child in children %}
+                <li class="col-sm-6 col-md-4 col-lg-3 col-xs-12 third-level-wrap">
+                  <h4><a href="{{ child.href }}">{{ child.name }}</a></h4>
+                  <ul class="list-unstyled  third-level-menu">
+                    {% for child_3 in child.children_3 %}
+                    <li><a href="{{ child_3.href }}">{{ child_3.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% endfor %}
+              </ul>
+              {% endfor %}</div>
+            <a href="{{ category.href }}" class="see-all">{{ text_all }} {{ category.name }}</a> </div>
+        </li>
+        {% else %}
+        <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+        {% endif %}
+        {% endfor %}
+        <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+      </ul>
+    </div>
+  </nav>
+{# </div> #}
+{% endif %} 
+
+<script>
+var dev_width = $(window).width();
+if (dev_width >= 768) {
+$('ul.menu.flex').flexMenu();
+  $('ul.menu.flex-multi').flexMenu({
+    showOnHover: true
+  });
+$(document).on("click", function(){
+        var $trigger = $(".flexMenu-viewMore");
+        if($trigger !== event.target && !$trigger.has(event.target).length){
+            $(".flexMenu-popup").slideUp("fast");
+        }            
+    });
+}
+</script>

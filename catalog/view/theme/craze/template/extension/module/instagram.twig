@@ -1,0 +1,17 @@
+<!--INSTAGRAM code -->
+<div class="instagram clearfix">
+<div class="heading_obj text-center col-xs-12">
+  <h2><span class="left"></span>{{heading_title}}<span class="right"></span></h2>
+</div>
+<div id="instagram_feed"  class="owl-carousel pull-left">
+{% for post in result.data %}
+    <div class="product-layout item">
+        <div class="product-block">
+        <div class="product-block-inner">
+    <a class="instagram-unit" target="_blank" href="{{ post.link}}">
+    <img src="{{ post.images.low_resolution.url}}"  alt="{{ post.caption.text}}"/></a>
+    </div></div></div>
+{% endfor %}
+</div>
+</div><!--clearfix-->
+<!--End of INSTAGRAM code -->

@@ -1,0 +1,32 @@
+<div class="brands-wrap clearfix">
+<div class="heading_obj text-center col-xs-12">
+  <h2><span class="left"></span>{{heading_title}}<span class="right"></span></h2>
+</div>
+<div class="brands owl-carousel pull-left">
+  {% for brand in brands %}  <div class="item">
+    <a href="{{ brand.href }}" title="{{brand.name}}"><img src="{{ brand.image }}"  alt="{{ brand.name }}" /></a>
+    <a href="{{ brand.href }}" title="{{brand.name}}"><h4 class="text-center">{{ brand.name }}</h4></a>
+  </div>
+  {% endfor %}
+</div>
+</div>
+<script>
+$('.brands').owlCarousel({
+  loop:true,
+  nav:true,
+    margin:25,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+        },
+        600:{
+            items:3,
+        },
+        1000:{
+            items:6,
+        }
+    }
+
+});
+</script>

@@ -1,0 +1,76 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 col-xs-12">
+        <div id="logo_footer">{% if logo %}<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>{% else %}
+            <h1><a href="{{ home }}">{{ name }}</a></h1>
+            {% endif %}</div>
+        <ul class="list-unstyled address clearfix">
+          {% if address %}
+            <li><i class="fa fa-map-marker"></i><span>{{ address }}</span></li>
+          {% endif %}
+          {% if telephone %}
+            <li><i class="fa fa-phone"></i><span>{{ telephone }}</span></li>
+          {% endif %}
+          {% if email %}
+            <li><i class="fa fa-envelope"></i><span>{{ email }}</span></li>
+          {% endif %}
+        </ul>
+        {% if address or telephone or email %}
+        <hr class="clearfix" />
+        {% endif %}
+        <ul class="list-unstyled social-medias pull-left clearfix">
+          <li class="fb"><a href="{{ facebook }}" target="_blank" title="{{text_facebook}}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+          <li class="twtr"><a href="{{ twitter }}" target="_blank" title="{{text_twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+          <li class="gp"><a href="{{ gplus }}" target="_blank" title="{{text_googleplus}}"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+          <li class="lnkdin"><a href="{{ linkedin }}" target="_blank" title="{{text_linkedin}}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+          <li class="pinterest"><a href="{{ pinterest }}" target="_blank" title="{{text_pinterest}}"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+          <li class="instagrm"><a href="{{ instagram }}" target="_blank" title="{{text_instagram}}"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+          <li class="utub"><a href="{{ youtube }}" target="_blank" title="{{text_youtube}}"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3 col-xs-12">
+        <h5>{{ text_service }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ contact }}" title="{{text_contact}}">{{ text_contact }}</a></li>
+          <li><a href="{{ return }}" title="{{text_return}}">{{ text_return }}</a></li>
+          <li><a href="{{ sitemap }}" title="{{text_sitemap}}">{{ text_sitemap }}</a></li>
+          <li><a href="{{ account }}" title="{{text_account}}">{{ text_account }}</a></li>
+          <li><a href="{{ order }}" title="{{text_order}}">{{ text_order }}</a></li>
+          <li><a href="{{ wishlist }}" title="{{text_wishlist}}">{{ text_wishlist }}</a></li>
+          <li><a href="{{ newsletter }}" title="{{text_newsletter}}">{{ text_newsletter }}</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3 col-xs-12">
+        <h5>{{ text_extra }}</h5>
+        <ul class="list-unstyled">
+          <li><a href="{{ manufacturer }}" title="{{text_manufacturer}}">{{ text_manufacturer }}</a></li>
+          <li><a href="{{ voucher }}" title="{{text_voucher}}">{{ text_voucher }}</a></li>
+          <li><a href="{{ affiliate }}" title="{{text_affiliate}}">{{ text_affiliate }}</a></li>
+          <li><a href="{{ special }}" title="{{text_special}}">{{ text_special }}</a></li>
+        </ul>
+      </div>
+      {% if informations %}
+      <div class="col-sm-3 col-xs-12">
+        <h5>{{ text_information }}</h5>
+        <ul class="list-unstyled">
+         {% for information in informations %}
+          <li><a href="{{ information.href }}" title="{{information.title}}">{{ information.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    <hr>
+    <p>{{ powered }}</p>
+    <div class="scrollup"><i class="fa fa-hand-o-up" aria-hidden="true"></i></div>
+  </div>
+</footer>
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+</body></html>

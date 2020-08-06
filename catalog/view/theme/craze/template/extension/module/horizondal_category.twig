@@ -1,0 +1,93 @@
+<div class="category_block clearfix">
+{% if category %}
+  <div class="category_header clearfix"><div class="col-sm-3 col-xs-12" style="background:{{bgcolor}}"><h4>{{ main_head }}</h4></div>
+    <div class="box-content col-sm-9 col-xs-12"><h4 class="text-left"><a href="{{ category.href}}">{{category.main_category.name}}</a></h4></div>
+  </div>    
+  <div class="col-sm-3 col-xs-12 no-padding img-block hidden-xs visible-sm visible-md visible-lg">
+    <a href="{{ category.href}}"><img src="{{ thumb }}" alt="{{ category.name }}" class="img-responsive" /></a>
+  </div>
+
+    <div class="tab-content category_products col-sm-9 col-xs-12 products-block">
+      {# {% for product in category.main_category.products %} #}
+          {# <div class="tab_wrap tab-pane fade in" id="{{ child.category_id }}"> #}
+            
+            {% if category.main_category.products is empty %} 
+             
+              <div class="no-products"><h4 class="text-capitalize">There are no products Under the category!!</h4></div>
+            {% else %}
+          <div  id="product_carousel_horizondal" class="product_carousel owl-carousel">
+          {% for product in category.main_category.products %}
+            <div class="product-layout item" >
+              <div class="product-thumb transition">
+                <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a></div>
+                <div class="caption">
+                  <h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+                  <div class="rating">
+                    {% for i in 1..5 %}
+                    {% if product.rating < i %}
+                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                    {% else %}
+                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  <p>{{ product.description }}</p>
+                  <hr/>
+                  
+                  {% if product.off_label %}
+          <div class="round text-uppercase off"><span>{{product.off_label}}%&nbsp; {{text_off}}</span></div>
+          {% endif %}
+                  <div class="clearfix price-row">
+              {% if product.price %}
+              <p class="price pull-left">
+                {% if not product.special %}
+                {{ product.price }}
+                {% else %}
+                <span class="price-new">{{ product.special }}</span>
+                <span class="price-old">{{ product.price }}</span>
+                {% endif %}
+              </p>
+               {% endif %}
+      <div class="cart-add pull-right">
+        <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ button_cart }}" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-cart-plus" aria-hidden="true"></i>&nbsp;{{ button_cart }}</button>
+        </div>
+    </div><!--price-row-->
+                </div>
+                <div class="button-group">
+                  
+                  <button type="button" class="wishlist" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i></button>
+                  <button type="button" class="compare" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-exchange"></i></button>
+                  <a href="{{ product.quickview_href }}" data-remote="false" data-toggle="modal" data-target="#productModal" style="outline:none;"><button type="button" class="quick_view" data-toggle="tooltip" title="{{ button_quickview }}"><i class="fa fa-eye"></i></button></a>
+                </div>
+              </div>
+            </div>
+          
+          {% endfor %} 
+            </div><!--owl-carousel-->
+        {% endif %}
+          {# </div> <!--tab-wrap--> #}
+ 
+{# {% endfor %} #}
+</div><!--tab-content-->
+{% endif %}
+</div><!--category_block-->
+
+<div class="modal" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal-content-product-view">
+  <div class="chage-close">
+    <button type="button" class="close are-chage" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>       
+  </div>
+      <div class="modal-body"></div>    
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" >
+
+  $("#productModal").on("show.bs.modal", function(e) {
+    var link = $(e.relatedTarget); 
+    $(this).find(".modal-body").load(link.attr("href"));
+  });
+
+</script>

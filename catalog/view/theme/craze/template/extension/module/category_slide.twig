@@ -1,0 +1,35 @@
+<div class="category-slide-wrap clearfix">
+<div class="heading_obj text-center col-xs-12">
+  <h2><span class="left"></span>{{heading_title}}<span class="right"></span></h2>
+</div>
+<div class="category-slide owl-carousel pull-left">
+  {% for category in categories %}  <div class="item">
+    <a href="{{ category.href }}"><img src="{{ category.image }}"  alt="{{ category.name }}" /></a>
+    <h4 class="text-center"><a href="{{ category.href }}">{{ category.name }}</a></h4>
+  </div>
+  {% endfor %}
+</div>
+</div>
+<script>
+$('.category-slide').owlCarousel({
+  loop:true,
+    margin:25,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:4,
+            nav:true,
+            loop:false
+        }
+    }
+
+});
+</script>
